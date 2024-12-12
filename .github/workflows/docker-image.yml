@@ -26,11 +26,17 @@ jobs:
         registry: ${{ secrets.REGISTRY_URL }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
+    # 3. Tag를 변수로 저장
+    - 
+      name: Set date variable
+      run: |
+        DATE_TAG=$(date +%Y%m%d%H%M%S)
+        echo "DATE_TAG=${DATE_TAG}" >> $GITHUB_ENV
         
-    # 3. Docker Image Build And Push
+    # 4. Docker Image Build And Push
     -
       name: Docker Image Build And Push
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ${{ secrets.REGISTRY_URL }}/pipeline-test:$(date +%Y%m%d%H%M%S)
+        tags: ${{ secrets.REGISTRY_URL }}/pipeline-test:${{ DATE_TAG }}
