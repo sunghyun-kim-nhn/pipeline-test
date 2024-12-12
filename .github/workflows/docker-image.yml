@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. 리포지토리 체크아웃
+    - uses: actions/checkout@v4
+    - name: Checkout repository
+    
+    # 2. Docker 로그인
+    - name: Login to Docker registry
+      run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ secrets.REGISTRY_URL }} -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
+
+    # 3. Docker Image Build And Push
+    - name: Docker Image Build And Push
+      run: docker build . -t dd530b18-kr1-registry.container.nhncloud.com/ksh_test/pipeline-test:$(date +%Y%m%d%H%M%S) --platform linux/amd64 --push
