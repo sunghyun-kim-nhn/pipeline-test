@@ -32,7 +32,7 @@ jobs:
       id: date
       run: |
         DATE_TAG=$(date +%Y%m%d%H%M%S)
-        echo "DATE_TAG=${DATE_TAG}"
+        echo "DATE_TAG=${DATE_TAG}" >> "$GITHUB_OUTPUT"
         
     # 4. Docker Image Build And Push
     -
