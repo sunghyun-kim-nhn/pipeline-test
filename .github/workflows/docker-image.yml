@@ -31,6 +31,7 @@ jobs:
       name: Set date variable
       id: date
       run: |
+        export TZ="Asia/Seoul"  # KST (한국 표준시) 시간대 설정
         DATE_TAG=$(date +%Y%m%d%H%M%S)
         echo "DATE_TAG=${DATE_TAG}" >> "$GITHUB_OUTPUT"
         
