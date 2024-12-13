@@ -29,9 +29,10 @@ jobs:
     # 3. Tag를 변수로 저장
     - 
       name: Set date variable
+      id: date
       run: |
         DATE_TAG=$(date +%Y%m%d%H%M%S)
-        echo "DATE_TAG=${DATE_TAG}" >> $GITHUB_ENV
+        echo "DATE_TAG=${DATE_TAG}"
         
     # 4. Docker Image Build And Push
     -
@@ -39,4 +40,4 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ${{ secrets.REGISTRY_URL }}/pipeline-test:${{ DATE_TAG }}
+        tags: ${{ secrets.REGISTRY_URL }}/pipeline-test:${{ step.date.outputs.DATE_TAG }}
