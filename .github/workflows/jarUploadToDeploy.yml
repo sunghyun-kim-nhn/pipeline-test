@@ -27,7 +27,7 @@ jobs:
       - name: Upload JAR file to Deploy
         run: |
           curl -X POST \
-          https://api-tcd.nhncloudservice.com/api/v1.0/projects/8ui0bQSSQkObH8ED/artifacts/4353/binary-group/5241 \
+          'https://api-tcd.nhncloudservice.com/api/v1.0/projects/8ui0bQSSQkObH8ED/artifacts/4353/binary-group/5241' \
           -F "binaryFile=@./app.jar" \
           -F "applicationType=server" \
           -H "Content-Type: multipart/form-data"
