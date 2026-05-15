@@ -1,6 +1,6 @@
 FROM maven:3-eclipse-temurin-17 AS builder
 ARG APP_HOME=/home/usr/app
-COPY . $APP_HOME
+COPY .. $APP_HOME
 WORKDIR $APP_HOME
 RUN mvn clean package -DskipTests
 
